@@ -1,44 +1,47 @@
 import java.util.Scanner;
 interface Furniture {
-        public void stressTest();
-        public void fireTest();
-    }
+    String stressTest();
+
+    String fireTest();
+}
 
     abstract class Chair implements Furniture {
-        public abstract String chairType();
+        abstract String chairType();
 
     }
+
     abstract class Table implements Furniture {
-        public abstract String tableType();
+        abstract String tableType();
     }
 
     class MetalChair extends Chair {
         @Override
-        public void stressTest() {
-            System.out.println("Passed Stress Test");
+        public String stressTest() {
+            return "Passed Stress Test";
         }
 
         @Override
-        public void fireTest() {
-            System.out.println("Passed fire test");
+        public String fireTest() {
+            return "Passed fire test";
         }
+
         @Override
-        public String chairType(){
-            String s="This is a Metal Chair";
+        public String chairType() {
+            String s = "This is a Metal Chair";
             return s;
         }
     }
 
     class MetalTable extends Table {
         @Override
-        public void stressTest() {
+        public String stressTest() {
 
-            System.out.println("Passed Stress Test");
+            return "Passed Stress Test";
         }
 
         @Override
-        public void fireTest() {
-            System.out.println("Passed Fire Test");
+        public String fireTest() {
+            return "Passed Fire Test";
         }
 
         @Override
@@ -51,13 +54,13 @@ interface Furniture {
 
     class WoodenTable extends Table {
         @Override
-        public void stressTest() {
-            System.out.println("Failed Stress Test");
+        public String stressTest() {
+            return "Failed Stress Test";
         }
 
         @Override
-        public void fireTest() {
-            System.out.println("Failed Fire Test");
+        public String fireTest() {
+            return "Failed Fire Test";
         }
 
         @Override
@@ -70,44 +73,50 @@ interface Furniture {
 
     class WoodenChair extends Chair {
         @Override
-        public void stressTest() {
-            System.out.println("Failed stress test");
+        public String stressTest() {
+            return "Failed stress test";
         }
 
         @Override
-        public void fireTest() {
-            System.out.println("Failed fire test");
+        public String fireTest() {
+            return "Failed fire test";
         }
+
         @Override
-        public String chairType(){
-            String s="This is a wodden chair.";
+        public String chairType() {
+            String s = "This is a wodden chair.";
             return s;
         }
     }
-public abstract class Design_classes_having_attributes_for_furniture {
-        public static void main(String[] args){
-            ;
-            Scanner input =  new Scanner(System.in);
-            String str = input.next();
-           Table table=null;
-           Chair chair=null;
-            if(str.equals("wooden")){
-                table=new WoodenTable();
-            }   else if (str.equals("metal")){
-                table=new MetalTable();
-            }
-            if(str.equals("wooden")){
-                chair=new WoodenChair();
-            }   else if (str.equals("metal")){
-                chair=new MetalChair();
-            }
-
-            System.out.println(table.tableType());
-            table.stressTest();
-            table.fireTest();
-            System.out.println(chair.chairType());
-            chair.stressTest();
-            chair.fireTest();
-
+    public abstract class Design_classes_having_attributes_for_furniture {
+    public static void main(String[] args) {
+        Table table=null;
+        Chair chair=null;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter the the material of furniture Wooden or Metal:");
+        String str = input.next();
+        if (str.equals("wooden")) {
+            table = new WoodenTable();
+        } else if (str.equals("metal")) {
+            table = new MetalTable();
+        } else {
+            System.out.println("Wrong input. Try again.");
         }
+        if (str.equals("wooden")) {
+            chair = new WoodenChair();
+        } else if (str.equals("metal")) {
+            chair = new MetalChair();
+        } else {
+            System.out.println("Wrong input. Try again.");
+        }
+
+        System.out.println(table.tableType());
+        System.out.println(table.stressTest());
+        System.out.println(table.fireTest());
+        System.out.println(chair.chairType());
+        System.out.println(chair.stressTest());
+        System.out.println(chair.fireTest());
+
+    }
+
 }
